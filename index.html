@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Hisham S | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --accent-orange: #e67e22; 
+            --brush-teal: #2d7a77;   
+            --bg-creme: #fdfaf5;     
+            --text-dark: #1a2c38;
+            --text-muted: #64748b;
+            --card-white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-creme); 
+            color: var(--text-dark); 
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- Fixed Navigation --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(253, 250, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo h2 { font-weight: 900; letter-spacing: -1px; }
+
+        .nav-links { 
+            display: flex; 
+            gap: 25px; 
+            align-items: center;
+        }
+
+        .nav-links a { 
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 700;
+            transition: 0.3s; 
+        }
+
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* --- Hero Section & Mobile Image Fix --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 8% 50px;
+        }
+
+        .hero-left { flex: 1; min-width: 300px; z-index: 10; }
+        .hero-left h1 { 
+            font-size: clamp(2.5rem, 5vw, 4.8rem); 
+            font-weight: 900; 
+            line-height: 1.1; 
+            margin-bottom: 15px;
+        }
+        .email-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        /* .grad-year { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; display: block; }
+        .grad-label { color: var(--text-muted); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600; } */
+
+        .hero-center {
+            flex: 1.2;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            width: 100%; /* Ensure it takes width on mobile */
+        }
+        /* .brush-stroke {
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            background-color: var(--brush-teal);
+            clip-path: polygon(15% 0%, 100% 15%, 85% 100%, 0% 85%);
+            transform: rotate(-10deg);
+            z-index: 1;
+        } */
+        .profile-img {
+            width: 300%;
+            max-width: 600px;
+            z-index: 5;
+            border-radius: 15px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+            display: block; /* Force display */
+        }
+
+        .hero-right { flex: 1; min-width: 300px; text-align: right; z-index: 10; }
+        .hero-right p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; }
+        .social-icons a {
+            color: var(--text-dark);
+            font-size: 2.2rem;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover { color: var(--accent-orange); transform: translateY(-5px); }
+
+        .hero-social-mini {
+            margin-bottom: 30px;
+        }
+
+        .hero-social-mini a {
+            color: var(--text-dark);
+            font-size: 2.2rem; /* Matches your LinkedIn/GitHub icon size */
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .hero-social-mini a:hover {
+            color: var(--accent-orange);
+            transform: translateY(-5px);
+            display: inline-block;
+        }
+
+        /* --- Sections & Cards --- */
+        section { padding: 80px 8%; max-width: 1400px; margin: 0 auto; }
+        h2.section-title { font-size: 2.5rem; margin-bottom: 40px; font-weight: 900; border-left: 8px solid var(--accent-orange); padding-left: 15px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        
+        .card {
+            background: var(--card-white);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            transition: 0.4s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); }
+
+        .tag {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+            color: var(--brush-teal);
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: auto;
+            transition: 0.3s;
+            border: none;
+            text-align: center;
+        }
+        .btn-primary { background: var(--text-dark); color: white; margin-top: 15px; }
+        .btn-outline { border: 2px solid var(--text-dark); color: var(--text-dark); cursor: pointer; background: transparent; margin-top: 15px; }
+        .btn:hover { opacity: 0.8; }
+
+        footer { text-align: center; padding: 60px; border-top: 1px solid #eee; color: var(--text-muted); }
+
+        /* --- Modal --- */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-img { max-width: 100%; max-height: 90vh; border: 5px solid white; border-radius: 10px; }
+
+        /* Styling for the Resume Button in Nav */
+        .resume-btn {
+            background-color: var(--accent-orange);
+            color: white !important; /* Forces text to stay white */
+            padding: 8px 18px !important;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s ease;
+        }
+
+        .resume-btn:hover {
+            background-color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .resume-btn i {
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Adjustment for the Button */
+        @media (max-width: 992px) {
+            .nav-links.active .resume-btn {
+                margin: 15px auto;
+                width: fit-content;
+            }
+        }
+
+        /* --- Responsiveness Fixes --- */
+        @media (max-width: 992px) {
+            nav { padding: 15px 5%; }
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-creme);
+                flex-direction: column; gap: 0; max-height: 0; overflow: hidden; transition: 0.4s;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+            }
+            .nav-links.active { max-height: 450px; }
+            .nav-links a { width: 100%; padding: 20px; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); }
+
+            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
+            .hero-left, .hero-right { text-align: center; width: 100%; }
+            .hero-right { margin-top: 20px; }
+            .social-icons { justify-content: center; display: flex; }
+            .hero-center { order: -1; margin-bottom: 40px; } /* Image moves to top on mobile */
+            /* .brush-stroke { width: 90%; height: 90%; } */
+            .profile-img { max-width: 280px; }
+        }
+
+        @media (max-width: 600px) {
+            section { padding: 60px 5%; }
+            h2.section-title { font-size: 2rem; }
+        }
+
+        .skill-circle-container { display: flex; flex-direction: column; align-items: center; }
+        .circle-box { position: relative; width: 80px; height: 80px; }
+        .circle-box svg { transform: rotate(-90deg); }
+        .circle-box circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+        .circle-box circle.bg { stroke: #eee; }
+        
+        .circle-box circle.progress {
+            stroke-dasharray: 220; /* 2 * PI * r (2 * 3.14 * 35) */
+            transition: stroke-dashoffset 1s ease-in-out;
+        }
+        
+        /* Percentages: 220 - (220 * Percentage / 100) */
+        .java { stroke: var(--accent-orange); stroke-dashoffset: 33; } /* 85% */
+        .php { stroke: var(--brush-teal); stroke-dashoffset: 44; }    /* 80% */
+        .db { stroke: var(--accent-orange); stroke-dashoffset: 22; }  /* 90% */
+        .web { stroke: var(--brush-teal); stroke-dashoffset: 33; }    /* 85% */
+
+        .skill-per {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            font-weight: 900;
+            color: var(--text-dark);
+        }
+
+        /* Styling for the Close Button */
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 50px; /* Large enough for desktop */
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 3000; /* Higher than the modal */
+            line-height: 1;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+        
+        .close-btn:hover {
+            color: var(--accent-orange);
+            transform: scale(1.2);
+        }
+        
+        /* Ensure the modal is a flex container to center the image */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.95); /* Darker for better contrast */
+            justify-content: center; 
+            align-items: center;
+        }
+        
+        /* Mobile adjustment for the button */
+        @media (max-width: 768px) {
+            .close-btn {
+                top: 20px;
+                right: 20px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="certModal" class="modal">
+        <span class="close-btn" onclick="document.getElementById('certModal').style.display='none'">&times;</span>
+        
+        <img class="modal-img" id="modalImg" alt="Certificate View">
+    </div>
+
+    <nav>
+        <div class="logo"><h2>My Creative Hub.</h2></div>
+        <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+        <div class="nav-links" id="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+            <a href="assets/Mohamed_Hisham_Resume.pdf" download class="resume-btn">
+                Resume <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-left">
+            <h1>Hey There,<br>I'm Hisham</h1>
+
+            <!-- <div>
+                <span class="grad-year">2024</span>
+                <span class="grad-label">Computer Science Graduate</span>
+            </div> -->
+        </div>
+
+        <div class="hero-center">
+            <!-- <div class="brush-stroke"></div> -->
+            <img src="img/hisham.png" alt="Mohamed Hisham S" class="profile-img">
+        </div>
+
+        <div class="hero-right">
+            <p>I design beautifully simple <br> databases, and I love <br> what I do.</p>
+            <div class="social-icons">
+                <a href="mailto:hisirf0306@gmail.com" title="Email Me"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/mohamed-hisham-s" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Mohamed-Hisham-S" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">Professional Summary</h2>
+        <div class="card">
+            <p style="font-size: 1.1rem; color: var(--text-dark); line-height: 1.6;">
+                <strong>MCA student</strong> with practical exposure to <strong>web application development</strong> and 
+                <strong>database management</strong> using <strong>Java, PHP, MySQL and JavaScript</strong>. 
+                Worked on academic and internship projects involving <strong>SQL queries, CRUD operations</strong>, 
+                and basic front-end development, with a strong interest in learning new technologies.
+            </p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Experience & Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h4 style="color: var(--accent-orange); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px;">Professional Internship</h4>
+                <h3>Full-Stack Web Development Intern</h3>
+                <p><strong>Sivasethu Info Tech Pvt. Ltd.</strong></p>
+                <p style="font-size: 0.85rem; color: var(--brush-teal); margin-bottom: 15px;">July 2025 – August 2025</p>
+                
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
+                    During this 8-week program, I worked on <strong>database integration</strong> and SQL query execution using <strong>MySQL</strong>. 
+                    I developed various web modules using <strong>PHP, HTML, CSS, and JavaScript</strong>, where I successfully managed <strong>CRUD operations</strong> to build dynamic features. 
+                </p>
+
+                <button onclick="view('img/internship-cert.png')" class="btn btn-outline" style="margin-top: 20px;">Verify Internship</button>
+            </div>
+
+            <div class="card">
+                <h4 style="color: var(--accent-orange); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px;">Major Project</h4>
+                <h3>College Management & Placement Portal</h3>
+                <ul style="margin: 20px 0; color: var(--text-muted); list-style-position: inside; font-size: 0.95rem;">
+                    <li><strong>Designed and implemented a relational MySQL database</strong> defining complex relationships between students, staff, and placement entities.</li>
+                    <li><strong>Wrote optimized SQL queries with JOINS</strong> to automate the retrieval of student eligibility and placement results.</li>
+                    <li><strong>Executed manual test cases</strong> to validate database transactions and ensure high data integrity across the portal.</li>
+                </ul>
+                <a href="https://github.com/mohamedhisham1909" target="_blank" class="btn btn-primary">View GitHub Source</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div class="grid">
+            <div class="card">
+                <h4 style="color: var(--accent-orange); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px;">NPTEL / SWAYAM</h4>
+                <h3>Programming in Java</h3>
+                <p style="margin: 15px 0; color: var(--text-muted);">
+                    Covered OOP concepts, exception handling, and file management.
+                </p>
+                <button onclick="view('img/nptel-java.png')" class="btn btn-outline">View Certificate</button>
+            </div>
+    
+            <div class="card">
+                <h4 style="color: var(--accent-orange); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px;">UNIQ Technologies</h4>
+                <h3>Full-Stack Certificate</h3>
+                <p style="margin: 15px 0; color: var(--text-muted);">
+                    Completed hands-on training covering front-end, back-end, and database technologies.
+                </p>
+                <button onclick="view('img/Full-Stack-Certificate.png')" class="btn btn-outline">View Certificate</button>
+            </div>
+    
+            <div class="card">
+                <h4 style="color: var(--accent-orange); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px;">Govt. of Tamil Nadu</h4>
+                <h3>English Typewriting (Junior Grade)</h3>
+                <p style="margin: 15px 0; color: var(--text-muted);">
+                    Achieved First Class with Distinction at 30 WPM.
+                </p>
+                <button onclick="view('img/typing-cert.png')" class="btn btn-outline">View Certificate</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Arsenal</h2>
+        <div class="grid">
+            <div class="card" style="padding: 30px;">
+                <h3 style="margin-bottom: 25px;">Development & DB Proficiency</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 20px; text-align: center;">
+                    
+                    <div class="skill-circle-container">
+                        <div class="circle-box">
+                            <svg width="80" height="80">
+                                <circle class="bg" cx="40" cy="40" r="35"></circle>
+                                <circle class="progress java" cx="40" cy="40" r="35"></circle>
+                            </svg>
+                            <span class="skill-per">85%</span>
+                        </div>
+                        <p style="font-size: 0.85rem; font-weight: 700; margin-top: 8px;">Java</p>
+                    </div>
+
+                    <div class="skill-circle-container">
+                        <div class="circle-box">
+                            <svg width="80" height="80">
+                                <circle class="bg" cx="40" cy="40" r="35"></circle>
+                                <circle class="progress php" cx="40" cy="40" r="35"></circle>
+                            </svg>
+                            <span class="skill-per">80%</span>
+                        </div>
+                        <p style="font-size: 0.85rem; font-weight: 700; margin-top: 8px;">PHP</p>
+                    </div>
+
+                    <div class="skill-circle-container">
+                        <div class="circle-box">
+                            <svg width="80" height="80">
+                                <circle class="bg" cx="40" cy="40" r="35"></circle>
+                                <circle class="progress db" cx="40" cy="40" r="35"></circle>
+                            </svg>
+                            <span class="skill-per">90%</span>
+                        </div>
+                        <p style="font-size: 0.85rem; font-weight: 700; margin-top: 8px;">SQL/MySQL</p>
+                    </div>
+
+                    <div class="skill-circle-container">
+                        <div class="circle-box">
+                            <svg width="80" height="80">
+                                <circle class="bg" cx="40" cy="40" r="35"></circle>
+                                <circle class="progress web" cx="40" cy="40" r="35"></circle>
+                            </svg>
+                            <span class="skill-per">85%</span>
+                        </div>
+                        <p style="font-size: 0.85rem; font-weight: 700; margin-top: 8px;">HTML/CSS/JS</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <h3>Tools & Methods</h3>
+                <div style="margin-top: 15px;">
+                    <span class="tag">Manual Testing</span><span class="tag">Git/GitHub</span>
+                    <span class="tag">VS Code</span><span class="tag">Eclipse IDE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        
+        <h3 style="margin-bottom: 20px; font-size: 1.2rem; color: var(--text-muted);">University Degrees</h3>
+        <div class="grid" style="margin-bottom: 40px;">
+            <div class="card">
+                <h3>Jamal Mohamed College</h3>
+                <p>Master of Computer Application (MCA)</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Jun 2024 – Apr 2026</p>
+                <p style="font-weight: 700; color: var(--brush-teal); margin-top: 10px;">Currently Pursuing</p>
+            </div>
+            <div class="card">
+                <h3>Jamal Mohamed College</h3>
+                <p>Bachelor of Computer Science</p>
+                <p style="font-weight: 700; color: var(--brush-teal); margin-top: 10px;">CGPA: 7.93</p>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom: 20px; font-size: 1.2rem; color: var(--text-muted);">Schooling</h3>
+        <div class="grid">
+            <div class="card">
+                <h3>St. James Matric Hr. Sec School</h3>
+                <p>Higher Secondary Certificate (HSC)</p>
+                <p style="font-weight: 700; color: var(--brush-teal); margin-top: 10px;">Percentage: 81.48%</p>
+            </div>
+            <div class="card">
+                <h3>St. James Matric Hr. Sec School</h3>
+                <p>Secondary School Leaving Certificate (SSLC)</p>
+                <p style="font-weight: 700; color: var(--brush-teal); margin-top: 10px;">Percentage: 76.20%</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Let's Connect</h3>
+                <p style="margin: 20px 0; color: var(--text-muted);">
+                    I'm currently open to new opportunities and collaborations. Feel free to reach out via the form or social media!
+                </p>
+                <div class="social-icons" style="justify-content: flex-start; margin-top: auto;">
+                    <a href="mailto:hisirf0306@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com/in/mohamed-hisham-s" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Mohamed-Hisham-S" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="card">
+                <form id="my-form" action="https://formspree.io/f/mykgjbly" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                    <div>
+                        <label style="display: block; font-weight: 700; margin-bottom: 5px;">Email:</label>
+                        <input type="email" name="email" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; font-family: inherit;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: 700; margin-bottom: 5px;">Message:</label>
+                        <textarea name="message" rows="4" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #ddd; font-family: inherit;"></textarea>
+                    </div>
+                    <button id="my-form-button" class="btn btn-primary" style="width: 100%; cursor: pointer;">Send Message</button>
+                    <p id="my-form-status" style="text-align: center; margin-top: 10px; font-weight: 600;"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Mohamed Hisham S | Tiruchirappalli, Tamil Nadu</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links a');
+
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+        links.forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        function view(src) {
+            const modal = document.getElementById('certModal');
+            const img = document.getElementById('modalImg');
+            img.src = src;
+            modal.style.display = 'flex'; // This centers the image and button
+        }
+        
+        // Optional: Close modal when clicking anywhere outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('certModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+  var form = document.getElementById("my-form");
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("my-form-status");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        status.innerHTML = "Thanks for your submission!";
+        status.className = "success";
+        form.reset();
+      } else {
+        response.json().then(data => {
+          status.className = "error";
+          if (Object.hasOwn(data, 'errors')) {
+            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form";
+          }
+        })
+      }
+    }).catch(error => {
+      status.className = "error";
+      status.innerHTML = "Oops! There was a problem submitting your form";
+    });
+  }
+  form.addEventListener("submit", handleSubmit);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
